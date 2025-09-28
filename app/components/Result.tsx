@@ -33,24 +33,25 @@ const Result = ({
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
+console.log(selectedCourse);
 
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
       <div className="flex w-full flex-col lg:w-[45%] gap-6 md:gap-12">
         <h2 className="text-white text-[40px] text-base/10 md:text-[60px] md:text-base/16">
           Quiz completed <br />
-          <span className="font-bold leading-none">You scored</span>
+          <span className="font-bold leading-none">You scored...</span>
         </h2>
       </div>
       <div className="flex w-full flex-col gap-4 lg:w-[55%] lg:items-end">
-        <div className="w-full h-[400px] py-4 bg-[#313E51] flex flex-col justify-between items-center">
+        <div className="w-full rounded-[20px] h-[350px] lg:w-[85%] py-4 bg-[#3B4D66] flex flex-col justify-between items-center">
           <div className="flex items-center gap-2">
             <img src={icon} alt="" />
             <p className="text-white text-[16px]">{selectedCourse}</p>
           </div>
-          <p className="text-[30px] text-white">{points}</p>
-          <p className="text-white text-[12px]">
-            out of {`${questions.length - 1}`}
+          <p className="text-[80px] text-white">{points}</p>
+          <p className="text-white text-[14px]">
+            out of {`${questions.length }`}
           </p>
         </div>
 

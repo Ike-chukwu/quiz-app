@@ -60,6 +60,7 @@ const reducer = (state: Quiz, action: QUIZACTON) => {
         status: "active",
         questions: selectedQuiz ? selectedQuiz.questions : [],
         courseIcon,
+        selectedCourse: action.payload?.selectedCourse,
       };
     case Action.SELECT_ANSWER:
       return {
@@ -115,6 +116,8 @@ export default function Home() {
     },
     dispatch,
   ] = useReducer(reducer, quizInit);
+
+  console.log(selectedCourse);
 
   return (
     <div className="w-full">

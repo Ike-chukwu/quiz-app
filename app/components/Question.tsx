@@ -36,8 +36,7 @@ const Question = ({
     };
   });
 
-  console.log(index);
-  console.log(questions.length);
+ 
 
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
@@ -100,11 +99,11 @@ const Question = ({
             next
           </button>
         )}
-        {!answer && index == questions.length - 1 && (
+        {answer && index == questions.length - 1 && (
           <button
             onClick={() =>
               dispatch({
-                type: Action.SUBMIT,
+                type: Action.FINISHED,
               })
             }
             className="w-full lg:w-[85%] px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
