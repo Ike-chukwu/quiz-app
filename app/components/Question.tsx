@@ -15,6 +15,7 @@ type Props = {
   }[];
   dispatch: ActionDispatch<[action: QUIZACTON]>;
   selectedOption?: string | null;
+  error: boolean;
 };
 
 const letters = ["a", "b", "c", "d"];
@@ -25,6 +26,7 @@ const Question = ({
   questions,
   dispatch,
   selectedOption,
+  error,
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
@@ -35,8 +37,7 @@ const Question = ({
       text: option,
     };
   });
-
- 
+  console.log(error);
 
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
@@ -81,8 +82,19 @@ const Question = ({
 
         {!answer && (
           <button
-            onClick={() => dispatch({ type: Action.SUBMIT })}
-            className="w-full lg:w-[85%] px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
+            onClick={() => {
+              if (!selectedOption) {
+                console.log(error);
+
+                dispatch({
+                  type: Action.UNANSWERED_QUESTION,
+                  payload: { error: true },
+                });
+                return;
+              }
+              dispatch({ type: Action.SUBMIT });
+            }}
+            className="w-full lg:w-[85%] cursor-pointer px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
           >
             submit
           </button>
@@ -94,7 +106,7 @@ const Question = ({
                 type: Action.NEXT_QUESTION,
               })
             }
-            className="w-full lg:w-[85%] px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
+            className="w-full lg:w-[85%] cursor-pointer px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
           >
             next
           </button>
@@ -106,10 +118,16 @@ const Question = ({
                 type: Action.FINISHED,
               })
             }
-            className="w-full lg:w-[85%] px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
+            className="w-full lg:w-[85%] cursor-pointer px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
           >
             see results
           </button>
+        )}
+        {error && (
+          <div className="flex w-full lg:w-[85%] gap-2 self-center items-center justify-center ">
+            <img src="/icon-error.svg" alt="" />
+            <p className="text-[#EE5454]">Please select an answer</p>
+          </div>
         )}
       </div>
     </div>

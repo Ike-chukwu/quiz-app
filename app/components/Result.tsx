@@ -33,7 +33,7 @@ const Result = ({
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
-console.log(selectedCourse);
+  console.log(selectedCourse);
 
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
@@ -51,7 +51,7 @@ console.log(selectedCourse);
           </div>
           <p className="text-[80px] text-white">{points}</p>
           <p className="text-white text-[14px]">
-            out of {`${questions.length }`}
+            out of {`${questions.length}`}
           </p>
         </div>
 
@@ -61,7 +61,7 @@ console.log(selectedCourse);
               type: Action.INITIALIZE,
             })
           }
-          className="w-full lg:w-[85%] px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
+          className="w-full lg:w-[85%] cursor-pointer px-3 py-3 md:py-5 bg-[#a52bf1] rounded-[20px] text-white text-center text-[20px] capitalize"
         >
           play again
         </button>

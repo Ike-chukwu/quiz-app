@@ -49,7 +49,7 @@ const StyledAnswer = ({
         />
       ) : (
         <img
-          src="/icon-error.svg"
+          src="/icon-incorrect.svg"
           className="absolute right-4 top-[50%] translate-y-[-50%]"
           alt=""
         />

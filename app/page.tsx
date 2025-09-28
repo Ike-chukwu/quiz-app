@@ -13,6 +13,7 @@ export enum Action {
   SUBMIT = "SUBMIT",
   NEXT_QUESTION = "NEXT_QUESTION",
   FINISHED = "FINISHED",
+  UNANSWERED_QUESTION = "UNANSWERED_QUESTION",
 }
 
 export interface QUIZACTON {
@@ -21,6 +22,7 @@ export interface QUIZACTON {
     status?: string;
     selectedCourse?: string;
     selectedOption?: string;
+    error?: boolean;
   };
 }
 
@@ -37,15 +39,19 @@ interface Quiz {
     answer: string;
   }[];
   courseIcon?: string;
+  error: boolean;
 }
 
 const quizInit: Quiz = {
   status: "initialize",
-  currentIndex: 0,
-  questions: [],
   answer: null,
   points: 0,
+  currentIndex: 0,
+  selectedCourse: "",
+  selectedOption: null,
+  questions: [],
   courseIcon: "",
+  error: false,
 };
 
 const reducer = (state: Quiz, action: QUIZACTON) => {
@@ -75,6 +81,7 @@ const reducer = (state: Quiz, action: QUIZACTON) => {
         answer: state.questions[state.currentIndex].answer,
         point: isAnswerCorrect ? state.points++ : state.points,
         selectedOption: action.payload?.selectedOption,
+        error: false,
       };
     case Action.NEXT_QUESTION:
       return {
@@ -90,6 +97,13 @@ const reducer = (state: Quiz, action: QUIZACTON) => {
         answer: null,
         status: "completed",
       };
+    case Action.UNANSWERED_QUESTION:
+      return {
+        ...state,
+        error: true,
+      };
+    case Action.INITIALIZE:
+      return quizInit;
 
     // return {
     //   ...state,
@@ -113,11 +127,10 @@ export default function Home() {
       selectedCourse,
       points,
       courseIcon,
+      error,
     },
     dispatch,
   ] = useReducer(reducer, quizInit);
-
-  console.log(selectedCourse);
 
   return (
     <div className="w-full">
@@ -128,6 +141,7 @@ export default function Home() {
           questions={questions}
           dispatch={dispatch}
           selectedOption={selectedOption}
+          error={error}
         />
       )}
       {status == "initialize" && <StartPage dispatch={dispatch} />}
