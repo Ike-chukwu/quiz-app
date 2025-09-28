@@ -18,8 +18,8 @@ const Answer = ({ option, dispatch, selectedOption }: Props) => {
           payload: { selectedOption: option.text },
         });
       }}
-      className={`w-full cursor-pointer lg:w-[85%] px-3 py-3 md:py-5 bg-[#3B4D66] rounded-[20px] flex items-center gap-3 md:gap-6 
-  ${selectedOption === option.text ? "border border-white" : ""}`}
+      className={`w-full cursor-pointer lg:w-[85%] px-3 py-3 md:py-5 bg-[#3B4D66] border-1 border-transparent hover:border-white rounded-[20px] flex items-center gap-3 md:gap-6 
+  ${selectedOption === option.text ? "border-1 border-white" : ""}`}
     >
       <div className="w-[40px] capitalize text-[20px] px=2 h-[40px] rounded-md flex text-black bg-white justify-center items-center">
         {option.letter}
