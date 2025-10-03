@@ -1,5 +1,5 @@
 import React, { ActionDispatch } from "react";
-import { Action, QUIZACTON } from "../page";
+import { Action, QUIZACTON } from "../utils/types";
 
 type Props = {
   option: { letter: string; text: string };

@@ -1,9 +1,8 @@
 "use client";
 import React, { ActionDispatch } from "react";
 import Answer from "./Answer";
-import { log } from "console";
-import { Action, QUIZACTON } from "../page";
 import StyledAnswer from "./StyledAnswer";
+import { Action, QUIZACTON } from "../utils/types";
 
 type Props = {
   index: number;
@@ -37,7 +36,6 @@ const Question = ({
       text: option,
     };
   });
-  console.log(error);
 
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
@@ -76,16 +74,10 @@ const Question = ({
               />
             ))}
 
-        {/* {courseTitles.map((course) => (
-          <CourseCard courseName={course.title} courseImg={course.source} />
-        ))} */}
-
         {!answer && (
           <button
             onClick={() => {
               if (!selectedOption) {
-                console.log(error);
-
                 dispatch({
                   type: Action.UNANSWERED_QUESTION,
                   payload: { error: true },

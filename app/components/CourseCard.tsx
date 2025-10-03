@@ -1,5 +1,6 @@
 import React, { ActionDispatch } from "react";
-import { Action, QUIZACTON } from "../page";
+import { Action, QUIZACTON } from "../utils/types";
+
 
 type Props = {
   dispatch: ActionDispatch<[action: QUIZACTON]>;

@@ -1,9 +1,6 @@
 "use client";
 import React, { ActionDispatch } from "react";
-import Answer from "./Answer";
-import { log } from "console";
-import { Action, QUIZACTON } from "../page";
-import StyledAnswer from "./StyledAnswer";
+import { Action, QUIZACTON } from "../utils/types";
 
 type Props = {
   index: number;
@@ -20,21 +17,13 @@ type Props = {
   icon?: string;
 };
 
-const letters = ["a", "b", "c", "d"];
-
 const Result = ({
-  index,
-  answer,
   questions,
   dispatch,
   points,
   selectedCourse,
   icon,
 }: Props) => {
-  const currentQuestionObj = questions[index];
-  const currentQuestion = currentQuestionObj?.question;
-  console.log(selectedCourse);
-
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
       <div className="flex w-full flex-col lg:w-[45%] gap-6 md:gap-12">

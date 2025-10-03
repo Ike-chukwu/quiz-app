@@ -1,5 +1,5 @@
 import React, { ActionDispatch } from "react";
-import { Action, QUIZACTON } from "../page";
+import { Action, QUIZACTON } from "../utils/types";
 
 type Props = {
   option: { letter: string; text: string };
@@ -8,16 +8,7 @@ type Props = {
   isAnswerCorrect?: boolean;
 };
 
-const alphabets = ["a", "b", "c", "d"];
-
-const StyledAnswer = ({
-  option,
-  dispatch,
-  selectedOption,
-  isAnswerCorrect,
-}: Props) => {
-  console.log(isAnswerCorrect);
-
+const StyledAnswer = ({ option, dispatch, isAnswerCorrect }: Props) => {
   return (
     <div
       onClick={() => {

@@ -1,11 +1,9 @@
 import React, { ActionDispatch } from "react";
 import CourseCard from "./CourseCard";
-import { QUIZACTON } from "../page";
-import { quizQuestions } from "../data";
+import { QUIZACTON } from "../utils/types";
+import { courseTitles } from "../utils/constants";
 
-const courseTitles = quizQuestions.quizzes.map((quiz) => {
-  return { title: quiz.title, icon: quiz.icon };
-});
+
 
 type Props = {
   dispatch: ActionDispatch<[action: QUIZACTON]>;

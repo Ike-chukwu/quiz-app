@@ -110,7 +110,7 @@ input:checked + .slider:before {
 
 
 progress {
-  border-radius: 7px; 
+  border-radius: 20px; 
   height: 22px;
   box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
 }
@@ -121,7 +121,7 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: #A52BF1;
   border-radius: 20px;
-  box-shadow: 1px 1px 5px 3px rgba(214, 125, 231, 0.8);
+  /* box-shadow: 1px 1px 5px 3px rgba(214, 125, 231, 0.8); */
 }
 progress::-moz-progress-bar {
   /* style rules */
