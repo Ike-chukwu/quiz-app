@@ -6,7 +6,6 @@ import Result from "./components/Result";
 import { reducer } from "./utils/reducer";
 import { quizInit } from "./utils/constants";
 
-
 export default function Home() {
   const [
     {
@@ -19,6 +18,7 @@ export default function Home() {
       points,
       courseIcon,
       error,
+      timeRemaining,
     },
     dispatch,
   ] = useReducer(reducer, quizInit);
@@ -33,6 +33,7 @@ export default function Home() {
           dispatch={dispatch}
           selectedOption={selectedOption}
           error={error}
+          timeRemaining={timeRemaining}
         />
       )}
       {status == "initialize" && <StartPage dispatch={dispatch} />}

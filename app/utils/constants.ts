@@ -15,4 +15,5 @@ export const quizInit: Quiz = {
   questions: [],
   courseIcon: "",
   error: false,
+  timeRemaining:0
 };

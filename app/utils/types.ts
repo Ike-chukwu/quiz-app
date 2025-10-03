@@ -6,6 +6,7 @@ export enum Action {
   NEXT_QUESTION = "NEXT_QUESTION",
   FINISHED = "FINISHED",
   UNANSWERED_QUESTION = "UNANSWERED_QUESTION",
+  TIME="TIME"
 }
 
 export interface QUIZACTON {
@@ -23,7 +24,7 @@ export interface Quiz {
   answer: string | null;
   points: number;
   currentIndex: number;
-  selectedCourse?: string ;
+  selectedCourse?: string;
   selectedOption?: string | null;
   questions: {
     question: string;
@@ -32,6 +33,5 @@ export interface Quiz {
   }[];
   courseIcon?: string;
   error: boolean;
+  timeRemaining?: number;
 }
-
-

@@ -1,8 +1,9 @@
 "use client";
-import React, { ActionDispatch } from "react";
+import React, { ActionDispatch, useEffect } from "react";
 import Answer from "./Answer";
 import StyledAnswer from "./StyledAnswer";
 import { Action, QUIZACTON } from "../utils/types";
+import Timer from "./Timer";
 
 type Props = {
   index: number;
@@ -15,6 +16,7 @@ type Props = {
   dispatch: ActionDispatch<[action: QUIZACTON]>;
   selectedOption?: string | null;
   error: boolean;
+  timeRemaining?: number;
 };
 
 const letters = ["a", "b", "c", "d"];
@@ -26,6 +28,7 @@ const Question = ({
   dispatch,
   selectedOption,
   error,
+  timeRemaining,
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
@@ -36,14 +39,23 @@ const Question = ({
       text: option,
     };
   });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch({ type: Action.TIME });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
-      <div className="flex flex-col lg:gap-36 lg:w-[40%]">
+    <div className="flex pt-20 pb-6 lg:pt-0 lg:pb-0 h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
+      <div className="flex flex-col lg:gap-36 lg:w-[40%] relative">
         <div className="flex flex-col gap-4">
-          <p className="text-[16px] text-[#ABC1E1] italic">
-            Question {index + 1} of {questions.length}
-          </p>
+          <div className="flex w-full justify-between items-center lg:block">
+            <p className="text-[16px] text-[#ABC1E1] italic">
+              Question {index + 1} of {questions.length}
+            </p>
+            <Timer className="block lg:hidden" timeRemaining={timeRemaining} />
+          </div>
           <p className="text-white text-[20px] text-base/10">
             {currentQuestion}
           </p>
@@ -53,6 +65,10 @@ const Question = ({
           value={answer ? index + 1 : index}
           max={questions.length}
         ></progress>
+        <Timer
+          className="hidden lg:block md:absolute bottom-2"
+          timeRemaining={timeRemaining}
+        />
       </div>
       <div className="flex w-full flex-col gap-4 lg:w-[55%] lg:items-end">
         {typeof answer == "string"
