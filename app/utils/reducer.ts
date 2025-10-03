@@ -27,7 +27,7 @@ export const reducer = (state: Quiz, action: QUIZACTON) => {
       return {
         ...state,
         timeRemaining: state?.timeRemaining && state?.timeRemaining - 1,
-        // status: state.timeRemaining === 0 ? "completed" : state.status,
+        status: state.timeRemaining === 0 ? "completed" : state.status,
       };
     case Action.SUBMIT:
       const isAnswerCorrect =
@@ -65,3 +65,4 @@ export const reducer = (state: Quiz, action: QUIZACTON) => {
       return state;
   }
 };
+
