@@ -6,7 +6,9 @@ export enum Action {
   NEXT_QUESTION = "NEXT_QUESTION",
   FINISHED = "FINISHED",
   UNANSWERED_QUESTION = "UNANSWERED_QUESTION",
-  TIME="TIME"
+  TIME = "TIME",
+  SET_HIGHSCORE = "SET_HIGHSCORE",
+  UPDATE_HIGHSCORE = "UPDATE_HIGHSCORE",
 }
 
 export interface QUIZACTON {
@@ -16,6 +18,7 @@ export interface QUIZACTON {
     selectedCourse?: string;
     selectedOption?: string;
     error?: boolean;
+    score?: number;
   };
 }
 
@@ -34,4 +37,5 @@ export interface Quiz {
   courseIcon?: string;
   error: boolean;
   timeRemaining?: number;
+  highScore: number;
 }

@@ -2,7 +2,6 @@ import { quizQuestions } from "../data";
 import { quizInit } from "./constants";
 import { Action, Quiz, QUIZACTON } from "./types";
 
-
 export const reducer = (state: Quiz, action: QUIZACTON) => {
   switch (action.type) {
     case Action.READY:
@@ -18,6 +17,16 @@ export const reducer = (state: Quiz, action: QUIZACTON) => {
         selectedCourse: action.payload?.selectedCourse,
         timeRemaining: selectedQuiz && selectedQuiz?.questions.length * 30,
       };
+    case Action.SET_HIGHSCORE:
+      return {
+        ...state,
+        highScore: action.payload?.score ?? 0,
+      };
+    case Action.UPDATE_HIGHSCORE:
+      return {
+        ...state,
+        highScore: action.payload?.score,
+      };
     case Action.SELECT_ANSWER:
       return {
         ...state,
@@ -27,7 +36,7 @@ export const reducer = (state: Quiz, action: QUIZACTON) => {
       return {
         ...state,
         timeRemaining: state?.timeRemaining && state?.timeRemaining - 1,
-        // status: state.timeRemaining === 0 ? "completed" : state.status,
+        status: state.timeRemaining === 0 ? "completed" : state.status,
       };
     case Action.SUBMIT:
       const isAnswerCorrect =

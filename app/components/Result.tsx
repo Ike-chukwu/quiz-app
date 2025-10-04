@@ -1,5 +1,5 @@
 "use client";
-import React, { ActionDispatch } from "react";
+import React, { ActionDispatch, useEffect } from "react";
 import { Action, QUIZACTON } from "../utils/types";
 
 type Props = {
@@ -24,6 +24,11 @@ const Result = ({
   selectedCourse,
   icon,
 }: Props) => {
+  let highScoreHolder = localStorage.getItem("highScores");
+  const highScoresObj = highScoreHolder && JSON.parse(highScoreHolder);
+  const highScoreOfSelectedCourseInLS =
+    selectedCourse && highScoresObj[selectedCourse];
+
   return (
     <div className="flex h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
       <div className="flex w-full flex-col lg:w-[45%] gap-6 md:gap-12">
@@ -43,7 +48,25 @@ const Result = ({
             out of {`${questions.length}`}
           </p>
         </div>
+        <div className="w-full lg:w-[85%] px-2  rounded-[20px] py-4 bg-[#3B4D66] flex flex-col justify-between items-center">
+          {highScoreOfSelectedCourseInLS > points && (
+            <p className="text-[16px] text-center text-white">
+              For the {selectedCourse} course, the high score remains unbeaten
+              at {highScoreOfSelectedCourseInLS}{" "}
+              {`point${points > 1 ? "s" : ""} `}😤
+            </p>
+          )}
 
+          {points == highScoreOfSelectedCourseInLS && (
+            <p className="text-[16px] text-center text-white">
+              Well done! 🏆
+              <br />
+              You’ve set a new high score of {points}{" "}
+              {`point${points > 1 ? "s" : ""} `}
+              for the {selectedCourse} course!
+            </p>
+          )}
+        </div>
         <button
           onClick={() =>
             dispatch({

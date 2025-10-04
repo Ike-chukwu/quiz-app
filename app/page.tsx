@@ -19,6 +19,7 @@ export default function Home() {
       courseIcon,
       error,
       timeRemaining,
+      highScore,
     },
     dispatch,
   ] = useReducer(reducer, quizInit);
@@ -34,6 +35,9 @@ export default function Home() {
           selectedOption={selectedOption}
           error={error}
           timeRemaining={timeRemaining}
+          selectedCourse={selectedCourse}
+          points={points}
+          highScore={highScore}
         />
       )}
       {status == "initialize" && <StartPage dispatch={dispatch} />}

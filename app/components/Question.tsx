@@ -17,6 +17,9 @@ type Props = {
   selectedOption?: string | null;
   error: boolean;
   timeRemaining?: number;
+  selectedCourse?: string;
+  points: number;
+  highScore?: number | null;
 };
 
 const letters = ["a", "b", "c", "d"];
@@ -29,6 +32,9 @@ const Question = ({
   selectedOption,
   error,
   timeRemaining,
+  selectedCourse,
+  points,
+  highScore,
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
@@ -45,6 +51,49 @@ const Question = ({
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    let highScoreHolder = localStorage.getItem("highScores");
+    if (!highScoreHolder) {
+      const highScoresObj = {
+        HTML: 0,
+        CSS: 0,
+        JavaScript: 0,
+        Accessibility: 0,
+      };
+      dispatch({
+        type: Action.SET_HIGHSCORE,
+      });
+      localStorage.setItem("highScores", JSON.stringify(highScoresObj));
+    } else {
+      const obj = JSON.parse(highScoreHolder);
+      const score = selectedCourse && obj[selectedCourse];
+      dispatch({
+        type: Action.SET_HIGHSCORE,
+        payload: {
+          score,
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (highScore !== undefined && highScore !== null && selectedCourse) {
+      if (points > highScore) {
+        const stringifiedScoreObj = localStorage.getItem("highScores");
+        const actualScoreObj =
+          stringifiedScoreObj && JSON.parse(stringifiedScoreObj);
+        actualScoreObj[selectedCourse] = points;
+        localStorage.setItem("highScores", JSON.stringify(actualScoreObj));
+        dispatch({
+          type: Action.UPDATE_HIGHSCORE,
+          payload: {
+            score: points,
+          },
+        });
+      }
+    }
+  }, [points]);
 
   return (
     <div className="flex pt-20 pb-6 lg:pt-0 lg:pb-0 h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
