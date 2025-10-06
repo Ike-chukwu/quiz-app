@@ -1,29 +1,11 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  background-size: cover;
 }
 
 .container{
@@ -106,6 +88,18 @@ input:checked + .slider:before {
   background-blend-mode: darken;
   background-size: cover;
   background-repeat: no-repeat;
+  color: white;
+  
+}
+
+
+.white-desktop{
+  background-image: url('../public/pattern-background-desktop-light.svg');
+  background-color: #FFFFFF;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #313E51;
 }
 
 
@@ -123,9 +117,6 @@ progress::-webkit-progress-value {
   border-radius: 20px;
   /* box-shadow: 1px 1px 5px 3px rgba(214, 125, 231, 0.8); */
 }
-progress::-moz-progress-bar {
-  /* style rules */
-}
 
 
 @media (max-width:1590px){
@@ -135,6 +126,15 @@ progress::-moz-progress-bar {
   background-blend-mode: darken;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.white-tablet{
+  background-image: url('../public/pattern-background-tablet-light.svg');
+  background-color: #FFFFFF;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
+    color: #313E51;
+
 }
 
 
@@ -148,9 +148,17 @@ progress::-moz-progress-bar {
   background-blend-mode: darken;
   background-size: cover;
   background-repeat: no-repeat;
+  color:white
 }
+.white-mobile{
+  background-image: url('../public/pattern-background-mobile-light.svg');
+  background-color: #FFFFFF;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
+    color: #313E51;
 
-
+}
 
 .container{
   width: 100%;

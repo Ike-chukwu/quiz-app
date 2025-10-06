@@ -27,10 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark-mobile dark-tablet dark-desktop container h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  h-screen`}
       >
-        <NightModeToggler />
-        <div className="h-full flex items-center w-full  ">{children}</div>
+        <div className="h-full">{children}</div>
       </body>
     </html>
   );

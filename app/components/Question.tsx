@@ -20,6 +20,7 @@ type Props = {
   selectedCourse?: string;
   points: number;
   highScore?: number | null;
+  mode?: string;
 };
 
 const letters = ["a", "b", "c", "d"];
@@ -35,6 +36,7 @@ const Question = ({
   selectedCourse,
   points,
   highScore,
+  mode,
 }: Props) => {
   const currentQuestionObj = questions[index];
   const currentQuestion = currentQuestionObj?.question;
@@ -96,16 +98,24 @@ const Question = ({
   }, [points]);
 
   return (
-    <div className="flex pt-20 pb-6 lg:pt-0 lg:pb-0 h-full flex-col gap-14 lg:flex-row w-full lg:justify-between">
+    <div
+      className={`flex pt-20 pb-6 lg:pt-0 lg:pb-0 h-full flex-col gap-14 lg:flex-row w-full lg:justify-between ${
+        mode == "dark" ? "text-white" : "text-[#313E51]"
+      }`}
+    >
       <div className="flex flex-col lg:gap-36 lg:w-[40%] relative">
         <div className="flex flex-col gap-4">
           <div className="flex w-full justify-between items-center lg:block">
-            <p className="text-[16px] text-[#ABC1E1] italic">
+            <p
+              className={`text-[16px] italic ${
+                mode == "dark" ? "text-white" : "text-[#313E51]"
+              }`}
+            >
               Question {index + 1} of {questions.length}
             </p>
             <Timer className="block lg:hidden" timeRemaining={timeRemaining} />
           </div>
-          <p className="text-white text-[20px] text-base/10">
+          <p className="text-[20px] text-base/10">
             {currentQuestion}
           </p>
         </div>
@@ -117,6 +127,7 @@ const Question = ({
         <Timer
           className="hidden lg:block md:absolute bottom-2"
           timeRemaining={timeRemaining}
+          mode={mode}
         />
       </div>
       <div className="flex w-full flex-col gap-4 lg:w-[55%] lg:items-end">
@@ -128,6 +139,7 @@ const Question = ({
                 dispatch={dispatch}
                 key={option.letter}
                 isAnswerCorrect={option.text == currentQuestionObj.answer}
+                mode={mode}
               />
             ))
           : refactoredOptions?.map((option) => (
@@ -136,6 +148,7 @@ const Question = ({
                 option={option}
                 dispatch={dispatch}
                 key={option.letter}
+                mode={mode}
               />
             ))}
 

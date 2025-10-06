@@ -32,6 +32,11 @@ export const reducer = (state: Quiz, action: QUIZACTON) => {
         ...state,
         selectedOption: action.payload?.selectedOption,
       };
+    case Action.MODE:
+      return {
+        ...state,
+        mode: action.payload?.mode,
+      };
     case Action.TIME:
       return {
         ...state,

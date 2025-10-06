@@ -17,4 +17,5 @@ export const quizInit: Quiz = {
   error: false,
   timeRemaining: 0,
   highScore: 0,
+  mode: "light",
 };

@@ -9,6 +9,7 @@ export enum Action {
   TIME = "TIME",
   SET_HIGHSCORE = "SET_HIGHSCORE",
   UPDATE_HIGHSCORE = "UPDATE_HIGHSCORE",
+  MODE = "MODE",
 }
 
 export interface QUIZACTON {
@@ -19,6 +20,7 @@ export interface QUIZACTON {
     selectedOption?: string;
     error?: boolean;
     score?: number;
+    mode?: string ;
   };
 }
 
@@ -37,5 +39,6 @@ export interface Quiz {
   courseIcon?: string;
   error: boolean;
   timeRemaining?: number;
-  highScore: number;
+  highScore?: number;
+  mode?: string;
 }

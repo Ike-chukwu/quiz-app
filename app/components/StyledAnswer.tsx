@@ -6,9 +6,10 @@ type Props = {
   dispatch: ActionDispatch<[action: QUIZACTON]>;
   selectedOption?: string | null;
   isAnswerCorrect?: boolean;
+  mode?: string;
 };
 
-const StyledAnswer = ({ option, dispatch, isAnswerCorrect }: Props) => {
+const StyledAnswer = ({ option, dispatch, isAnswerCorrect, mode }: Props) => {
   return (
     <div
       onClick={() => {
@@ -17,8 +18,10 @@ const StyledAnswer = ({ option, dispatch, isAnswerCorrect }: Props) => {
           payload: { selectedOption: option.text },
         });
       }}
-      className={`w-full cursor-pointer relative lg:w-[85%] px-3 py-3 md:py-5 bg-[#3B4D66] rounded-[20px] flex items-center gap-3 md:gap-6 
-  ${isAnswerCorrect ? "border border-green-500" : "border border-red-500"}`}
+      className={`w-full cursor-pointer relative lg:w-[85%] px-3 py-3 md:py-5 rounded-[20px] flex items-center gap-3 md:gap-6 
+  ${isAnswerCorrect ? "border border-green-500" : "border border-red-500"} ${
+        mode == "dark" ? "text-white bg-[#3B4D66]" : "text-[#313E51] bg-white"
+      }`}
     >
       <div
         className={`w-[40px] capitalize text-[20px] px=2 h-[40px] rounded-md flex justify-center items-center ${
@@ -29,9 +32,7 @@ const StyledAnswer = ({ option, dispatch, isAnswerCorrect }: Props) => {
       >
         {option.letter}
       </div>
-      <p className="text-[14px] md:text-[20px] font-bold text-white ">
-        {option.text}
-      </p>
+      <p className="text-[14px] md:text-[20px] font-bold ">{option.text}</p>
       {isAnswerCorrect ? (
         <img
           src="/icon-correct.svg"
